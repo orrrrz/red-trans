@@ -5,7 +5,6 @@ English | [中文](README_zh-CN.md)
 
 RedTrans is a dedicated Chrome extension that allows you to translate text in REDNote (also known as Xiaohongshu, or 小红书) website (https://www.xiaohongshu.com/).
 
-
 # Features
 
 - Translate titles on explore page, title/content/comments on note detail page, message on notification page
