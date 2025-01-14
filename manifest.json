@@ -1,0 +1,46 @@
+{
+    "manifest_version": 3,
+    "name": "RedTrans",
+    "version": "0.0.1",
+    "description": "An LLM-based translation tool for web REDNote (Xiaohongshu).",
+    "icons": {
+        "16": "images/icon-16.png",
+        "32": "images/icon-32.png",
+        "48": "images/icon-48.png",
+        "128": "images/icon-128.png"
+    },
+    "content_scripts": [
+    {
+      "js": ["scripts/style.js", "scripts/llm.js", "scripts/redtrans.js"],
+      "type": "module",
+      "matches": [
+        "https://www.xiaohongshu.com/*"
+      ]
+    }
+  ],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+  ],
+  "action": {
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "32": "images/icon-32.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+      ],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ] 
+}

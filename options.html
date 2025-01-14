@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Options</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      overflow-y: auto;
+    }
+
+    .options-container {
+      flex: 1;
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+      box-sizing: border-box;
+      /* overflow-y: auto; */
+      margin: 0 auto;
+      padding-right: 25px;
+    }
+
+    .options-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .options-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    .options-container::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .options-container::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+
+    .option-item {
+      margin-bottom: 20px;
+    }
+    .option-item label {
+      display: block;
+      font-size: 1.2em;
+      color: #495057;
+      margin-bottom: 10px;
+    }
+    .option-item input[type="number"],
+    .option-item input[type="checkbox"],
+    .option-item input[type="text"],
+    .option-item input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+    }
+    .option-item input[type="number"]:hover,
+    .option-item input[type="checkbox"]:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .option-item input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+    .option-item .checkbox-label {
+      display: flex;
+      align-items: center;
+    }
+    .option-item .checkbox-label input[type="checkbox"] {
+      margin-right: 10px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .option-item .checkbox-label label {
+      margin-bottom: 0;
+    }
+
+    .sub-label {
+      display: inline;
+      font-size: 0.8em;
+      color: #6c757d;
+      margin-left: 10px;
+    }
+    .save-button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .save-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .color-picker-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .color-display {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-left: 10px;
+      border: 2px solid #b2dfdb;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .styled-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #b2dfdb;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+    }
+    .styled-input:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .visibility-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin-left: 10px;
+      transition: transform 0.3s;
+    }
+    .visibility-button:hover {
+      transform: scale(1.1);
+    }
+
+    .message-tip {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 1em;
+        text-align: center;
+        transition: opacity 0.3s, transform 0.3s;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    .message-tip.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .message-tip.success {
+        background-color: #4caf50;
+        color: #ffffff;
+    }
+    .message-tip.error {
+        background-color: #f44336;
+        color: #ffffff;
+    }
+
+    .sponsor-button {
+      position: fixed;
+      bottom: 5px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #28a745;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      z-index: 1000;
+    }
+
+    .sponsor-button:hover {
+      background-color: #218838;
+    }
+
+    .sponsor-button i {
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e9ecef;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="options-container">
+    <h1>Morph Options</h1>
+   
+    <div class="option-group">
+      <div class="option-item">
+        <label for="vendor">LLM Provider</label>
+        <select id="vendor" name="vendor" class="styled-input">
+          <option value="openai">OpenAI</option>
+          <option value="deepseek">DeepSeek</option>
+        </select>
+      </div>
+      <div class="option-item">
+        <label for="llm-api-key">LLM API Key</label>
+        <div class="color-picker-wrapper">
+          <input type="password" id="llm-api-key" name="llm-api-key" class="styled-input">
+          <button type="button" for="llm-api-key" class="visibility-button">👁️</button>
+        </div>
+      </div>
+      <div class="option-item">
+        <label for="language">Language</label>
+        <select id="language" name="language" class="styled-input">
+          <option value="English">English</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="Russian">Russian</option>
+        </select>
+      </div>
+
+    </div> <!-- option-group -->
+    <div id="message-tip" class="message-tip" style="display: none;"></div>
+    <button class="save-button">Save</button>
+    
+  </div>
+  
+  <script src="scripts/options.js"></script>
+</body>
+</html>
